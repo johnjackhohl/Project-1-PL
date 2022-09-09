@@ -1,16 +1,12 @@
 def main():
-    start = startPrompt()
+    # starting dice roll
+    start = input("Please enter a 4 digit dice roll:")
+    # starting dice roll into array 
     dice = [int(x) for x in str(start)]
-    end = endPrompt()
-# get the starting dice
-def startPrompt():
-    num = input("Please enter a 4 digit dice roll.")
-    #add if statement to check that it is valid
-    return int(num)
-# get the ending dice
-def endPrompt():
-    num = input("Please enter what the previous dice roll should turn too.")
-    return int(num)
+    # end dice roll
+    end = input("Please enter what the previous dice roll should turn too: ")
+    # end dice roll into array
+    endDice = [int(x) for x in str(end)]
 # adds one to one dice
 def bump(dice, poss):
     dice[poss] = dice[poss]+1
@@ -24,3 +20,4 @@ def swap(dice, poss1, poss2):
     dice[poss1] = dice[poss2]
     dice[poss2] = temp
     return dice
+main()

@@ -9,15 +9,18 @@ def main():
     endDice = [int(x) for x in str(end)]
 # adds one to one dice
 def bump(dice, poss):
-    dice[poss] = dice[poss]+1
+    if dice[poss] != 6:
+        dice[poss]+=1
     return dice
 # flips once dice to the opposite side
 def flip(dice, poss):
     dice[poss] = 7 - dice[poss]
+    return dice
 # swaps two dice's possition
 def swap(dice, poss1, poss2):
     temp = dice[poss1]
     dice[poss1] = dice[poss2]
     dice[poss2] = temp
     return dice
+
 main()

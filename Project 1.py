@@ -12,7 +12,7 @@ def main():
     
     endDice = [int(x) for x in str(endDiceRolls)]
     diceGraph = graph(startDice, endDice)
-    print(printRootToLeafPaths(startDice, diceGraph))
+    print(diceGraph)
     
         
 def bump(dice, pos):
@@ -46,24 +46,6 @@ def graph(start, end):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
     return queue
-
-def isLeaf(node):
-    return node.left is None and node.right is None
-
-def printRootToLeafPaths(node, path):
-    if node is None:
-        return
-    path.append(node.data)
-    if isLeaf(node):
-        print(path)
-    else:
-        printRootToLeafPaths(node.left, path)
-        printRootToLeafPaths(node.right, path)
-    path.pop()
-
-def printRootToLeafPath(root):
-    path = deque()
-    printRootToLeafPaths(root, path)
 
 if __name__ == "__main__":
     main()

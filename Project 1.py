@@ -45,6 +45,7 @@ def graph(start, end):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
     return None
+    
 
 if __name__ == "__main__":
     main()

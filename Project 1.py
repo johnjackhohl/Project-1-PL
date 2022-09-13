@@ -12,7 +12,7 @@ def main():
     
     endDice = [int(x) for x in str(endDiceRolls)]
     diceGraph = graph(startDice, endDice)
-    print(diceGraph)
+    print(bfs(diceGraph, startDice, endDice))
     
         
 def bump(dice, pos):
@@ -46,6 +46,7 @@ def graph(start, end):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
     return queue
+
 
 if __name__ == "__main__":
     main()

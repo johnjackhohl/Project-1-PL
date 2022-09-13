@@ -1,3 +1,7 @@
+from collections import deque
+import queue
+
+
 def main():
     # start = input("Please enter a 4 digit dice roll:")
     startDiceRolls = "1234"
@@ -7,9 +11,10 @@ def main():
     endDiceRolls = "4234"
     
     endDice = [int(x) for x in str(endDiceRolls)]
-    print(bfs(startDice, endDice))
+    diceGraph = graph(startDice, endDice)
+    print(printRootToLeafPaths(startDice, diceGraph))
     
-    
+        
 def bump(dice, pos):
     if dice[pos] >= 1 and dice[pos] <= 5:
         dice[pos]+=1
@@ -25,7 +30,7 @@ def swap(dice, pos1, pos2):
     dice[pos2] = temp
     return dice
 
-def bfs(start, end):
+def graph(start, end):
     queue = [start]
     visited = []
     while queue:
@@ -40,7 +45,25 @@ def bfs(start, end):
                 for j in range(4):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
-    return None
-    
+    return queue
+
+def isLeaf(node):
+    return node.left is None and node.right is None
+
+def printRootToLeafPaths(node, path):
+    if node is None:
+        return
+    path.append(node.data)
+    if isLeaf(node):
+        print(path)
+    else:
+        printRootToLeafPaths(node.left, path)
+        printRootToLeafPaths(node.right, path)
+    path.pop()
+
+def printRootToLeafPath(root):
+    path = deque()
+    printRootToLeafPaths(root, path)
+
 if __name__ == "__main__":
     main()

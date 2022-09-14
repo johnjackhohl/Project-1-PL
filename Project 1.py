@@ -8,7 +8,7 @@ def main():
     startDice = [int(x) for x in str(startDiceRolls)]
     
     # end = input("Please enter what the previous dice roll should turn too: ")
-    endDiceRolls = "4232"
+    endDiceRolls = "6666"
     
     endDice = [int(x) for x in str(endDiceRolls)]
  

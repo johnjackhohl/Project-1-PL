@@ -8,7 +8,7 @@ def main():
     startDice = [int(x) for x in str(startDiceRolls)]
     
     # end = input("Please enter what the previous dice roll should turn too: ")
-    endDiceRolls = "4234"
+    endDiceRolls = "4232"
     
     endDice = [int(x) for x in str(endDiceRolls)]
     diceGraph = graph(startDice, endDice)
@@ -45,7 +45,7 @@ def graph(start, end):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
     return None
-    
+
 
 if __name__ == "__main__":
     main()

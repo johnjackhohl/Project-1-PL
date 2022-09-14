@@ -11,8 +11,9 @@ def main():
     endDiceRolls = "4232"
     
     endDice = [int(x) for x in str(endDiceRolls)]
-    diceGraph = graph(startDice, endDice)
-    print(diceGraph)
+ 
+    path = bfs(startDice, endDice)
+    print(shortestPath(path, startDice, endDice))
         
 def bump(dice, pos):
     if dice[pos] >= 1 and dice[pos] <= 5:
@@ -29,7 +30,7 @@ def swap(dice, pos1, pos2):
     dice[pos2] = temp
     return dice
 
-def graph(start, end):
+""" def graph(start, end):
     queue = [start]
     visited = []
     while queue:
@@ -44,8 +45,35 @@ def graph(start, end):
                 for j in range(4):
                     if i != j:
                         queue.append(swap(dice[:], i, j))
-    return None
+    return None """
 
+def bfs(start, end):
+    path = {}
+    visited = []
+    queue = [(start, start)]
+    while queue:
+        current, prev = queue.pop(0)
+        if current not in visited:
+            visited.append(current)
+            path[tuple(current)] = prev
+            if current == end:
+                return path
+            for i in range(4):
+                queue.append((bump(current[:], i), current))
+                queue.append((flip(current[:], i), current))
+                for j in range(4):
+                    if i != j:
+                        queue.append((swap(current[:], i, j), current))
+
+def shortestPath(path, start, end):
+   shortPath = []
+   current = end
+   while current != start:
+    shortPath.append(current)
+    current = path[tuple(current)]
+   shortPath.append(start)
+   shortPath.reverse()
+   return shortPath
 
 if __name__ == "__main__":
     main()

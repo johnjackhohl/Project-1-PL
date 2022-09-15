@@ -47,22 +47,20 @@ def bfs(start, end):
         if current == end:
             return path
         for i in range(4):
+            new = bump(current[:], i)
+            if tuple(new) not in path:
+                queue.append(new)
+                path[tuple(new)] = current
+            new = flip(current[:], i)
+            if tuple(new) not in path:
+                queue.append(new)
+                path[tuple(new)] = current
             for j in range(4):
                 if i != j:
                     new = swap(current[:], i, j)
                     if tuple(new) not in path:
                         queue.append(new)
-                        path[tuple(new)] = current
-        for i in range(4):
-            new = bump(current[:], i)
-            if tuple(new) not in path:
-                queue.append(new)
-                path[tuple(new)] = current
-        for i in range(4):
-            new = flip(current[:], i)
-            if tuple(new) not in path:
-                queue.append(new)
-                path[tuple(new)] = current
+                        path[tuple(new)] = current  
     return path
 
 

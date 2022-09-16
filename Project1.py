@@ -48,21 +48,20 @@ def bfs(start, end):
             return path
         for i in range(4):
             for j in range(4):
-                if i != j:
-                    new = swap(current[:], i, j)
+                if i == j:
+                    new = bump(current.copy(), i)
                     if tuple(new) not in path:
                         queue.append(new)
                         path[tuple(new)] = current
-        for i in range(4):
-            new = bump(current[:], i)
-            if tuple(new) not in path:
-                queue.append(new)
-                path[tuple(new)] = current
-        for i in range(4):
-            new = flip(current[:], i)
-            if tuple(new) not in path:
-                queue.append(new)
-                path[tuple(new)] = current
+                    new = flip(current.copy(), i)
+                    if tuple(new) not in path:
+                        queue.append(new)
+                        path[tuple(new)] = current
+                else:
+                    new = swap(current.copy(), i, j)
+                    if tuple(new) not in path:
+                        queue.append(new)
+                        path[tuple(new)] = current
     return path
 
 
@@ -77,14 +76,10 @@ def shortestPath(path, start, end):
     Returns:
         array: shortest path from start to end
     """
-    shortPath = []
-    current = end
-    while current != start:
-        shortPath.append(current)
-        current = path[tuple(current)]
-    shortPath.append(start)
-    shortPath.reverse()
-    return shortPath
+    shortest = [end]
+    while shortest[-1] != start:
+        shortest.append(path[tuple(shortest[-1])])
+    return shortest[::-1]
 
 
 if __name__ == "__main__":

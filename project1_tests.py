@@ -24,4 +24,3 @@ class TestProject1(unittest.TestCase):
 if __name__ == "__main__":
     print("Running unit tests for Project 1 \n")
     unittest.main(verbosity=2)
-    print("All tests passed")
